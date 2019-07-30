@@ -41,13 +41,26 @@ mixpanel.init("556ceafeae422306cefcda3fe3defa0c");</script><!-- end Mixpanel -->
         <h1>27 PIESZA PIELGRZYMKA<br>WYRY/CZĘSTOCHOWA</h1>
         <h2>14-17 SIERPNIA 2019</h2>
 
-        <div class="morph-button morph-button-overlay morph-button-fixed">
-            <button type="button">ZAPISZ SIĘ</button>
-            <div class="morph-content" style="left: 59px; top: 770.234375px;">
-                <div>
-                    <div class="content-style-overlay">
-                        <span class="icon icon-close">Close the overlay</span>
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeMzrHyUng0wsuDInApmlcp4j7E6yaaSA5u7uxMfg3pPfYj3Q/viewform?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+        <div class="signup-buttons">
+            <div class="morph-button morph-button-overlay morph-button-fixed" id="button-piesza">
+                <button type="button">ZAPISZ SIĘ NA PIESZĄ</button>
+                <div class="morph-content" style="left: 59px; top: 770.234375px;">
+                    <div>
+                        <div class="content-style-overlay">
+                            <span class="icon icon-close" id="icon-piesza">Zamknij formularz</span>
+                            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeMzrHyUng0wsuDInApmlcp4j7E6yaaSA5u7uxMfg3pPfYj3Q/viewform?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Ładowanie...</iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="morph-button morph-button-overlay morph-button-fixed" id="button-rowerowa">
+                <button type="button">ZAPISZ SIĘ NA ROWEROWĄ</button>
+                <div class="morph-content" style="left: 59px; top: 770.234375px;">
+                    <div>
+                        <div class="content-style-overlay">
+                            <span class="icon icon-close" id="icon-rowerowa">Zamknij formularz</span>
+                            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe72XJ_if3bm-TaYwGE6mmi7A64aSoJ_XMOtkCrIjvU-krQeQ/viewform?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Ładowanie...</iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,10 +142,10 @@ mixpanel.init("556ceafeae422306cefcda3fe3defa0c");</script><!-- end Mixpanel -->
 
     scrollFn();
 
-    var el = document.querySelector( '.morph-button' );
+    var el = document.querySelector( '#button-piesza' );
 
     new UIMorphingButton( el, {
-        closeEl : '.icon-close',
+        closeEl : '#icon-piesza',
         onBeforeOpen : function() {
             // don't allow to scroll
             noScroll();
@@ -158,6 +171,37 @@ mixpanel.init("556ceafeae422306cefcda3fe3defa0c");</script><!-- end Mixpanel -->
             canScroll();
         }
     } );
+
+    var el = document.querySelector( '#button-rowerowa' );
+
+    new UIMorphingButton( el, {
+        closeEl : '#icon-rowerowa',
+        onBeforeOpen : function() {
+            // don't allow to scroll
+            noScroll();
+        },
+        onAfterOpen : function() {
+            // can scroll again
+            canScroll();
+            // add class "noscroll" to body
+            classie.addClass( document.body, 'noscroll' );
+            // add scroll class to main el
+            classie.addClass( el, 'scroll' );
+        },
+        onBeforeClose : function() {
+            // remove class "noscroll" to body
+            classie.removeClass( document.body, 'noscroll' );
+            // remove scroll class from main el
+            classie.removeClass( el, 'scroll' );
+            // don't allow to scroll
+            noScroll();
+        },
+        onAfterClose : function() {
+            // can scroll again
+            canScroll();
+        }
+    } );
+
     })();
 </script>
 <script type="text/javascript" charset="utf-8" async defer>

@@ -46,9 +46,9 @@ a
 }
 
 .full-width iframe{
-	min-height: 1000px;
-	height: 100% !important;
+	height: 100vh !important;
 }
+
 
 
 .morph-button-fixed > button{
@@ -64,11 +64,20 @@ a
 	height: auto;
 	background: transparent;
 	text-shadow: 0px 0px 10px #333;
+	white-space: nowrap;
+	font-family: 'Roboto';
+	transition: 0.2s; 
+}
+
+.morph-button-fixed > button:hover {
+	background: #ffd42a;
+	color: #ffffff;
 }
 
 .morph-button-fixed{
-	width: 100%;
+	width: auto;
 	margin: 0 !important;
+	margin-right: 20px !important;
 }
 
 .morph-button-overlay .morph-content{
@@ -398,4 +407,12 @@ iframe{
 .icon-close::before{
 	color: #ffd42a;
 	top:2px;
+}
+
+.signup-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 20px;
 }
